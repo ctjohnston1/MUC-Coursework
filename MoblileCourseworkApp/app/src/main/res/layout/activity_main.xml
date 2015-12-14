@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Begin the App"
-        android:id="@+id/button"
+        android:id="@+id/beginApp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/welcome"
         android:layout_alignEnd="@+id/welcome" />
