@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view){
 Intent outputScreen = new Intent(getApplicationContext(), carParkOutput.class);
+        Intent mInfo = new Intent(getApplicationContext(), moreInformation.class);
+
 startActivity(outputScreen);
     }
 }

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -24,10 +27,10 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by conor on 14/12/2015.
  */
-public class carParkOutput extends MainActivity {
+public class carParkOutput extends MainActivity implements View.OnClickListener{
 TextView result;
     public ArrayList<String> arr = new ArrayList<String>();
-
+Button moreInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,24 +38,36 @@ TextView result;
         setContentView(R.layout.carpark_output);
         Intent outputScreen = getIntent();
         Context appContext = getApplicationContext();
+
         result = (TextView) findViewById(R.id.test);
+        moreInfo = (Button)findViewById(R.id.moreInfo);
+        moreInfo.setOnClickListener(this);
+
 //Get RSS Feed
        RSSDataItem CarParks = new RSSDataItem();
         String RSSFeedURL = "https://api.open.glasgow.gov.uk/traffic/carparks";//may need another part to this for the parameters
         AsyncParser asyncRSSParser = new AsyncParser(this, RSSFeedURL);
         try {
             CarParks = asyncRSSParser.execute("").get();
+          //  Log.e("SizeofArraylist",CarParks.getCarPark());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        result.setText(CarParks.getCarPark());
+        arr.add(CarParks.getCarPark());
+
+
+        //result.setText();
         //for (int l = 0; l < arr.size(); l++) {
          //   Log.e("checking loader", arr.get(l));
 //
 
       //  }
 
+    }
+    public void onClick(View view){
+        moreInformation info = new moreInformation();
+        setContentView(R.layout.more_info);
     }
 }
