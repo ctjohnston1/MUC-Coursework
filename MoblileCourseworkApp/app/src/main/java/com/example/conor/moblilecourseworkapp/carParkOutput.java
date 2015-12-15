@@ -2,6 +2,7 @@ package com.example.conor.moblilecourseworkapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +32,9 @@ public class carParkOutput extends MainActivity implements View.OnClickListener{
 TextView result;
     public ArrayList<String> arr = new ArrayList<String>();
 Button moreInfo;
+    MediaPlayer infosound;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ Button moreInfo;
         Intent outputScreen = getIntent();
         Context appContext = getApplicationContext();
 
+        infosound = MediaPlayer.create(carParkOutput.this,R.raw.info);
         result = (TextView) findViewById(R.id.test);
         moreInfo = (Button)findViewById(R.id.moreInfo);
         moreInfo.setOnClickListener(this);
@@ -67,6 +72,7 @@ Button moreInfo;
 
     }
     public void onClick(View view){
+        infosound.start();
         moreInformation info = new moreInformation();
         setContentView(R.layout.more_info);
     }

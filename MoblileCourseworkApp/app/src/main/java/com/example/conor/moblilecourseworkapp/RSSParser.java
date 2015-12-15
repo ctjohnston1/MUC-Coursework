@@ -29,6 +29,7 @@ public class RSSParser  {
 
     private String carpark;
     private String spaces;
+
    // private int i = 0;
  //   public  ArrayList<String> arr = new ArrayList<String>();
   //  private String found;
@@ -38,6 +39,7 @@ public class RSSParser  {
         rssDataItem.setCarPark(sItemData);//set the carPark
         rssDataItem.setOccupancy(sItemData);//set the description
         rssDataItem.setCapacity(sItemData);//set the link
+        rssDataItem.setLongitude(sItemData);//set the longitude
        // rssDataItem.setArr(sItemData);//arraylistvalue
 
     }
@@ -100,6 +102,28 @@ public class RSSParser  {
                                 Log.v("Total Capacity", temp);
 
                             }
+                            else
+                                // Check which Tag we have
+                                if (theParser.getName().equalsIgnoreCase("longitude"))
+                                {
+                                    // Now just get the associated text
+                                    String temp = theParser.nextText();
+                                    // store data in class
+                                    rssDataItem.setLongitude(temp);
+                                    Log.v("Logitude= ", temp);
+
+                                }
+                                else
+                                    // Check which Tag we have
+                                    if (theParser.getName().equalsIgnoreCase("latitude"))
+                                    {
+                                        // Now just get the associated text
+                                        String temp = theParser.nextText();
+                                        // store data in class
+                                        rssDataItem.setLatitude(temp);
+                                        Log.e("Latitude= ", temp);
+
+                                    }
                 }
 
                 // Get the next event
