@@ -18,16 +18,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 
 /**
  * Created by conor on 14/12/2015.
  */
-public class RSSParser {
+public class RSSParser  {
     //creates an instance of RSSDataIetem
     private RSSDataItem rssDataItem;
 
     private String carpark;
     private String spaces;
+   // private int i = 0;
+ //   public  ArrayList<String> arr = new ArrayList<String>();
   //  private String found;
 //set values of the RSS Data item that has been instantiated passing in a string.
     public void setRssDataItem(String sItemData)
@@ -35,6 +38,8 @@ public class RSSParser {
         rssDataItem.setCarPark(sItemData);//set the carPark
         rssDataItem.setOccupancy(sItemData);//set the description
         rssDataItem.setCapacity(sItemData);//set the link
+       // rssDataItem.setArr(sItemData);//arraylistvalue
+
     }
 
     public RSSDataItem getRssDataItem()//returns the RSS Data Item Object
@@ -52,8 +57,10 @@ public class RSSParser {
     {
         try
         {
+            int i = 0;
             while (theEventType != XmlPullParser.END_DOCUMENT)
             {
+
                 // Found a start tag
                 if(theEventType == XmlPullParser.START_TAG)
                 {
@@ -64,9 +71,13 @@ public class RSSParser {
                         String temp = theParser.nextText();
                         // store data in class
                         rssDataItem.setCarPark(temp);
-                        //send data to logcat to show that it has been parsed
-                        Log.e("CAR PARK FOUND",temp);
+                     //   arr.add(temp);
 
+                        //send data to logcat to show that it has been parsed
+
+                       //     rssDataItem.setArr(temp);
+                       // Log.e("Arraylist Works", arr.get(i));
+                      //      i++;
                     }
                     else
                         // Check which Tag we have
@@ -150,4 +161,5 @@ public class RSSParser {
         while (-1 != (n = reader.read(buffer))) writer.write(buffer, 0, n);
         return writer.toString();
     }
+
 }

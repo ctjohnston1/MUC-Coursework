@@ -3,6 +3,7 @@ package com.example.conor.moblilecourseworkapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -17,6 +18,7 @@ import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -24,7 +26,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class carParkOutput extends MainActivity {
 TextView result;
-
+    public ArrayList<String> arr = new ArrayList<String>();
 
 
     @Override
@@ -33,9 +35,9 @@ TextView result;
         setContentView(R.layout.carpark_output);
         Intent outputScreen = getIntent();
         Context appContext = getApplicationContext();
-        result = (TextView)findViewById(R.id.test);
+        result = (TextView) findViewById(R.id.test);
 //Get RSS Feed
-        RSSDataItem CarParks = new RSSDataItem();
+       RSSDataItem CarParks = new RSSDataItem();
         String RSSFeedURL = "https://api.open.glasgow.gov.uk/traffic/carparks";//may need another part to this for the parameters
         AsyncParser asyncRSSParser = new AsyncParser(this, RSSFeedURL);
         try {
@@ -46,10 +48,11 @@ TextView result;
             e.printStackTrace();
         }
         result.setText(CarParks.getCarPark());
+        //for (int l = 0; l < arr.size(); l++) {
+         //   Log.e("checking loader", arr.get(l));
+//
 
-
+      //  }
 
     }
-
-
 }
