@@ -3,6 +3,7 @@ package com.example.conor.moblilecourseworkapp;
 import android.app.DialogFragment;
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,18 +13,24 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button beginApp;
     ImageView mungosTree;
     TextView welcome;
     FragmentManager fmAboutDialogue;
+
+    MediaPlayer soundeffect;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mungosTree = (ImageView)findViewById(R.id.mungosTree);
         welcome = (TextView)findViewById(R.id.welcome);
+
+        soundeffect = MediaPlayer.create(MainActivity.this, R.raw.carstart);
+
         beginApp = (Button)findViewById(R.id.beginApp);
         beginApp.setOnClickListener(this);
         fmAboutDialogue = this.getFragmentManager();
@@ -63,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
 Intent outputScreen = new Intent(getApplicationContext(), carParkOutput.class);
         Intent mInfo = new Intent(getApplicationContext(), moreInformation.class);
+        soundeffect.start();
 
 startActivity(outputScreen);
     }
