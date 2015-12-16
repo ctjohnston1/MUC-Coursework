@@ -14,32 +14,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+//declaring items for the main activity
     Button beginApp;
     ImageView mungosTree;
     TextView welcome;
-    FragmentManager fmAboutDialogue;
+    FragmentManager fmAboutDialogue;//for the about dialog
 
-    MediaPlayer soundeffect;
+    MediaPlayer soundeffect;//for the sound effect on button click
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        mungosTree = (ImageView)findViewById(R.id.mungosTree);
-        welcome = (TextView)findViewById(R.id.welcome);
+        setContentView(R.layout.activity_main);//set the view to the activity_main.xml
+        mungosTree = (ImageView)findViewById(R.id.mungosTree);//set the imageview to mungosTree src of image already defined in activity_main.xml
+        welcome = (TextView)findViewById(R.id.welcome);//set welcome = to text view
 
-        soundeffect = MediaPlayer.create(MainActivity.this, R.raw.carstart);
+        soundeffect = MediaPlayer.create(MainActivity.this, R.raw.carstart); //set sound effect = to mediaplayer and create a sound from the R.raw file
+                                                                            //with the sound effect being called carstart
 
-        beginApp = (Button)findViewById(R.id.beginApp);
-        beginApp.setOnClickListener(this);
-        fmAboutDialogue = this.getFragmentManager();
+        beginApp = (Button)findViewById(R.id.beginApp);//begin app button set to equal a button on screen 1 (activity_main.xml)
+        beginApp.setOnClickListener(this);//attach onclicklistener to the button
+        fmAboutDialogue = this.getFragmentManager();//get fragmentmanager
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);//creates a menu accessible from any layout
         return true;
     }
 
@@ -50,16 +51,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch (item.getItemId()){
-            case R.id.Quit:
-                finish();
-                return true;
-            case R.id.About:
+            case R.id.Quit://quit button, has been added to the menu_main.xml
+                finish();//finishes the current screen
+                return true;//returns a true boolean
+            case R.id.About://About button has been added to the menu_main.xml
                 //about dialogue
-                DialogFragment mcAboutDig = new AboutDialogue();
-                mcAboutDig.show(fmAboutDialogue,"mc_About_Dig");
+                DialogFragment mcAboutDig = new AboutDialogue();//new about dialogue made
+                mcAboutDig.show(fmAboutDialogue,"mc_About_Dig");//passes fragment manager & string in with the .show function being called
                 return true;
             default:
-                return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);//returns the selected item
         }
         //noinspection SimplifiableIfStatement
 
@@ -67,11 +68,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     @Override
-    public void onClick(View view){
-Intent outputScreen = new Intent(getApplicationContext(), carParkOutput.class);
-        Intent mInfo = new Intent(getApplicationContext(), moreInformation.class);
-        soundeffect.start();
+    public void onClick(View view){//when  button clicked
+Intent outputScreen = new Intent(getApplicationContext(), carParkOutput.class);//new intent for the carParkOutput class
 
-startActivity(outputScreen);
+        soundeffect.start();//play sound effect
+
+startActivity(outputScreen);//start the outputScreen activity
     }
 }

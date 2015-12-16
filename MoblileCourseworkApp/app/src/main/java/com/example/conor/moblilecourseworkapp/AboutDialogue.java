@@ -14,11 +14,11 @@ import android.os.Bundle;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class AboutDialogue extends DialogFragment{
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder aboutDialog = new AlertDialog.Builder((getActivity()));
-        aboutDialog.setMessage("This app will show you information on Car Parks")
+    public Dialog onCreateDialog(Bundle savedInstanceState) {//on create
+        AlertDialog.Builder aboutDialog = new AlertDialog.Builder((getActivity()));//Create an Alert Dialogue
+        aboutDialog.setMessage("This app will show you information on Car Parks")//Assign the message to be put in the main dialogue
                 .setTitle("About")
-
+                //attach an onClickListener
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -26,6 +26,7 @@ public class AboutDialogue extends DialogFragment{
                     }
                 });
 
-        return aboutDialog.create();
+        return aboutDialog.create();//return the created dialogue
+                                    //Dialogue option must be added to the menu_main.xml
     }
 }
