@@ -74,6 +74,7 @@ Button moreInfo;
     public void onClick(View view){
         infosound.start();
         moreInformation info = new moreInformation();
-        setContentView(R.layout.more_info);
+        mapActivity theMap = new mapActivity();
+        setContentView(R.layout.map_view);
     }
 }
