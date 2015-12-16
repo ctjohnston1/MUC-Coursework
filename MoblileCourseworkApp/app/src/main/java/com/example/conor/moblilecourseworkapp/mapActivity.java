@@ -33,20 +33,20 @@ public class mapActivity extends FragmentActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.map_view);
-        mapDataList = new ArrayList<mapData>();
-        mapDataDBmgr mapDB = new mapDataDBmgr(this, "mapEKFamous5.s3db", null, 1);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//set screen to portrait
+        setContentView(R.layout.map_view);//set view map_view.xml
+        mapDataList = new ArrayList<mapData>();//new ArrayList
+        mapDataDBmgr mapDB = new mapDataDBmgr(this, "mapEKFamous5.s3db", null, 1);//new instance of the mapDataDBmgr
         try {
-            mapDB.dbCreate();
+            mapDB.dbCreate();//create database
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
-        mapDataList = mapDB.allMapData();
-        SetUpMap();
-        AddMarkers();
+        mapDataList = mapDB.allMapData();//add all the map data to the arraylist
+        SetUpMap();//call function
+        AddMarkers();//call function
     }
 
     public void SetUpMap(){
@@ -67,12 +67,12 @@ public class mapActivity extends FragmentActivity{
         String markText;
 
         //for all the marker options in dbList
-        for(int i = 0; i < mapDataList.size(); i++){
-            mData = mapDataList.get(i);
-            markTitle = mData.getFirstname()+ " "+ mData.getSurname() + "  "+ mData.getOccupation();
-            markText = "Information to be entered";
-            marker = SetMarker(markTitle,markText, new LatLng(mData.getLatitude(), mData.getLongitude()), markerColours[i],true);
-            mapDataMarkerList[i] = parkLocations.addMarker(marker);
+        for(int i = 0; i < mapDataList.size(); i++){//loop for the size of the database loaded in
+            mData = mapDataList.get(i);//mData equals the i value for the arraylist
+            markTitle = mData.getFirstname()+ " "+ mData.getSurname() + "  "+ mData.getOccupation();//markTitle is a large string connected to retrieving info from the database
+            markText = "Information to be entered";//string value
+            marker = SetMarker(markTitle,markText, new LatLng(mData.getLatitude(), mData.getLongitude()), markerColours[i],true);//set marker
+            mapDataMarkerList[i] = parkLocations.addMarker(marker);//add the marker
         }
     }
     public MarkerOptions SetMarker(String title, String snippet, LatLng location, float markerColour, boolean centreAnchor){

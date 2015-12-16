@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-//declaring items for the main activity
+//declaring items for the main activit
     Button beginApp;
     ImageView mungosTree;
     TextView welcome;
